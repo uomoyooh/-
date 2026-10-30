@@ -1,121 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>사진 포트폴리오</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Noto+Serif+KR:wght@400&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>유호원 · 사진</title>
+<meta name="description" content="유호원 사진 작업 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#e8ebec;--surface:#f6f7f7;--ink:#171a1d;--mute:#5d666d;--line:#c9cfd2;--accent:#2f45e6;--on-accent:#fff;
---disp:"Bricolage Grotesque","Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--body:"Noto Serif KR","Apple SD Gothic Neo",serif;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181a;--surface:#1d2124;--ink:#eceff0;--mute:#98a2a9;--line:#32383c;--accent:#8c9bff;--on-accent:#10131a}}
-:root[data-theme="dark"]{--bg:#15181a;--surface:#1d2124;--ink:#eceff0;--mute:#98a2a9;--line:#32383c;--accent:#8c9bff;--on-accent:#10131a}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.7}
-header{padding:48px 24px 8px;max-width:1400px;margin:0 auto}
-h1{font:700 clamp(2.4rem,8vw,5.5rem)/1 var(--disp);letter-spacing:-.03em;margin:0 0 12px}
-.intro{color:var(--mute);max-width:52ch;margin:0}
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-top:28px}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-.bar-in{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-button,label.btn{font:500 .95rem var(--disp);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer}
-button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-button:hover,label.btn:hover{border-color:var(--ink)}
-.add{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.add:hover{border-color:var(--accent);filter:brightness(1.08)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.tools{display:flex;gap:14px;align-items:center;font:500 .9rem var(--disp);color:var(--mute)}
-input[type=range]{accent-color:var(--accent);width:110px}
-main{max-width:1400px;margin:0 auto;padding:24px}
-.grid{column-count:var(--cols,4);column-gap:var(--gap,14px)}
-.tile{break-inside:avoid;margin:0 0 var(--gap,14px);position:relative;cursor:pointer;display:block;width:100%;padding:0;border:0;border-radius:2px;overflow:hidden;background:var(--surface);text-align:left}
-.tile img,.tile .ph{display:block;width:100%;height:auto}
-.tile .ph{aspect-ratio:var(--r)}
-.tile .no{position:absolute;left:8px;top:8px;font:500 .75rem var(--disp);color:#fff;background:rgba(0,0,0,.45);padding:1px 7px;border-radius:2px;opacity:0;transition:opacity .15s}
-.tile:hover .no,.tile:focus-visible .no{opacity:1}
-.count{font:500 .9rem var(--disp);color:var(--mute);margin:0 0 16px}
-.empty{color:var(--mute);padding:48px 0}
-footer{max-width:1400px;margin:0 auto;padding:8px 24px 56px;color:var(--mute);font-size:.9rem}
-.lb{position:fixed;inset:0;z-index:20;background:rgba(10,12,14,.94);display:none;flex-direction:column;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));color:#eceff0}
-.lb.on{display:flex}
-.lb .stage{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
-.lb .stage>*{max-width:100%;max-height:100%;width:auto;height:auto}
-.lb .stage .ph{height:min(72vh,100%);aspect-ratio:var(--r);max-width:92vw}
-.lb .cap{font:500 1rem var(--disp);padding-top:14px;text-align:center}
-.lb .cap small{display:block;color:#98a2a9;font-weight:400}
-.lb button{color:#eceff0;border-color:#4a5258;position:absolute;top:calc(12px + env(safe-area-inset-top,0px))}
-.lb .x{right:14px}.lb .p,.lb .n{top:50%;transform:translateY(-50%);border-radius:50%;width:44px;height:44px;padding:0;font-size:1.2rem}
-.lb .p{left:10px}.lb .n{right:10px}
-@media (max-width:700px){.tools input{width:80px}header{padding-top:32px}}
+:root{--bg:#fff;--ink:#141414;--mute:#7c7c7c;--line:#e8e8e8;--side:230px;--sans:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;--serif:'Noto Serif KR','Apple myungjo',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:300 15px/1.8 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ───── 첫 화면 ───── */
+.intro{min-height:100vh;padding:40px 48px;display:flex;flex-direction:column}
+.intro header b{font-size:19px;font-weight:500;display:block;line-height:1.3}
+.intro header small{display:block;font-size:12px;color:var(--mute);margin-top:4px}
+.intro header p{margin-top:14px;color:var(--mute);font-size:14px}
+.gate{margin:auto 0;padding:48px 0;display:flex;flex-direction:column;gap:.1em}
+.gate a{display:flex;align-items:baseline;gap:18px;font-size:clamp(46px,9vw,112px);font-weight:100;line-height:1.15;letter-spacing:-.02em;transition:padding-left .25s,font-weight .25s}
+.gate a:hover,.gate a:focus-visible{padding-left:.25em;font-weight:300}
+.gate small{font-size:13px;font-weight:300;letter-spacing:0;color:var(--mute)}
+.intro footer{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.intro footer a:hover{color:var(--ink)}
+
+/* ───── 안쪽 페이지: 왼쪽 메뉴 ───── */
+aside{position:fixed;inset:0 auto 0 0;width:var(--side);padding:40px 32px;display:flex;flex-direction:column;gap:32px;overflow-y:auto}
+.brand{font-size:19px;font-weight:500;line-height:1.3}
+.brand small{display:block;font-size:12px;font-weight:300;color:var(--mute);margin-top:4px}
+nav{display:flex;flex-direction:column;gap:6px}
+nav>a{color:var(--mute);line-height:1.6;transition:color .15s}
+nav>a:hover,nav>a.on{color:var(--ink)}
+nav>a.on{font-weight:500}
+.sub{display:flex;flex-direction:column;gap:3px;margin:0 0 10px 14px;padding-left:12px;border-left:1px solid var(--line)}
+.sub a{font-size:13px;color:var(--mute);line-height:1.6}
+.sub a:hover,.sub a.on{color:var(--ink)}
+.sub a.on{font-weight:500}
+.foot{margin-top:auto;font-size:12px;color:var(--mute);display:flex;flex-direction:column}
+.foot a:hover{color:var(--ink)}
+main{margin-left:var(--side);padding:40px 48px 80px;min-height:100vh}
+body.home aside{display:none}
+body.home main{margin:0;padding:0}
+
+h1{font-size:22px;font-weight:500;margin-bottom:10px}
+h1 small{font-size:13px;font-weight:300;color:var(--mute);margin-left:10px}
+.text{max-width:62ch;color:#444;margin-bottom:36px}
+.text p+p{margin-top:1em}
+.empty{color:var(--mute)}
+
+/* Works: 작업 목록 */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px}
+.tile img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f1f1f1}
+.tile span{display:block;margin-top:10px;font-size:14px}
+.tile em{font-style:normal;color:var(--mute);font-size:12px;margin-left:6px}
+
+/* Works: 작업 하나 */
+.rows{display:flex;flex-wrap:wrap;gap:10px}
+.rows button{border:0;background:#f1f1f1;cursor:zoom-in;flex:var(--r) 1 calc(var(--r)*250px);line-height:0}
+.rows img{width:100%;height:auto;display:block}
+.rows i{flex-grow:100000}
+
+/* Texts: 글 목록 / 글 읽기 */
+.list{max-width:720px;list-style:none}
+.list a{display:block;padding:18px 0;border-top:1px solid var(--line)}
+.list li:last-child a{border-bottom:1px solid var(--line)}
+.list b{display:block;font-size:17px;font-weight:400;transition:padding-left .2s}
+.list a:hover b{padding-left:8px}
+.list span{display:block;color:var(--mute);font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.essay{max-width:34em}
+.essay h1{font-size:26px;line-height:1.45;margin-bottom:40px}
+.essay .body{font:400 16px/2.05 var(--serif);word-break:keep-all}
+.essay .body p+p{margin-top:1.3em}
+.back{display:inline-block;margin-top:56px;color:var(--mute);font-size:13px}
+.back:hover{color:var(--ink)}
+
+/* 크게 보기 */
+#lb{position:fixed;inset:0;background:#fff;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;padding:56px 70px 24px}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain}
+#lb p{margin-top:14px;font-size:13px;color:var(--mute);min-height:1.8em;text-align:center}
+#lb button{position:absolute;border:0;background:none;font:300 30px/1 var(--sans);color:var(--ink);cursor:pointer;padding:14px;opacity:.55}
+#lb button:hover{opacity:1}
+#lb .x{top:10px;right:14px}
+#lb .p{left:8px;top:50%}
+#lb .n{right:8px;top:50%}
+
+@media(max-width:760px){
+ .intro{padding:24px 20px}
+ aside{position:static;width:auto;padding:24px 20px 8px;gap:14px}
+ nav{flex-direction:row;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+ .sub{flex-basis:100%;order:5;flex-direction:row;flex-wrap:wrap;gap:2px 14px;margin:0;padding:6px 0 0;border:0}
+ .foot{display:none}
+ main{margin:0;padding:16px 20px 60px;min-height:0}
+ #lb{padding:56px 12px 20px}
+ #lb .p,#lb .n{top:auto;bottom:6px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-  <h1>홍길동<br>사진 작업</h1>
-  <p class="intro">2019년부터 도시, 풍경, 사람을 찍어 왔습니다. 시리즈별로 모아 한 화면에서 볼 수 있습니다.</p>
-</header>
-<div class="bar"><div class="bar-in">
-  <div class="tabs" id="tabs" role="group" aria-label="시리즈 필터"></div>
-  <div class="tools">
-    <label for="size">크기</label><input id="size" type="range" min="1" max="6" value="4" aria-label="한 줄에 보이는 사진 수">
-    <label class="btn add" for="file">사진 추가</label>
-    <input id="file" type="file" accept="image/*" multiple hidden>
-    <button id="theme" type="button" aria-label="테마 바꾸기">테마</button>
-  </div>
-</div></div>
-<main>
-  <p class="count" id="count"></p>
-  <div class="grid" id="grid"></div>
-</main>
-<footer>사진을 추가하면 이 브라우저 화면에서만 보입니다. 새로고침하면 사라집니다.</footer>
+<aside>
+  <a class="brand" href="#" id="brand"></a>
+  <nav id="nav" aria-label="메뉴"></nav>
+  <div class="foot" id="foot"></div>
+</aside>
+<main id="main"></main>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
-  <button class="x" id="lx" type="button">닫기</button>
-  <button class="p" id="lp" type="button" aria-label="이전 사진">‹</button>
-  <div class="stage" id="stage"></div>
-  <button class="n" id="ln" type="button" aria-label="다음 사진">›</button>
-  <div class="cap" id="cap"></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
+  <button class="x" aria-label="닫기">×</button>
+  <button class="p" aria-label="이전 사진">‹</button>
+  <img alt="">
+  <p></p>
+  <button class="n" aria-label="다음 사진">›</button>
 </div>
 
+<!-- 작업·글 목록: make_data.py 가 이 파일을 자동으로 만듭니다 -->
+<script src="data/works.js"></script>
 <script>
-var SERIES=["전체","도시","풍경","인물","필름"];
-var seed=[["새벽 횡단보도","도시",210,.8],["비 온 뒤 골목","도시",230,1.25],["옥상에서","도시",200,1.5],["막차","도시",250,.75],["안개 낀 능선","풍경",150,1.5],["겨울 바다","풍경",190,1.33],["이른 숲","풍경",120,.8],["들판","풍경",80,1.78],["창가의 오후","인물",20,.8],["웃음","인물",340,1],["뒷모습","인물",300,1.25],["시장 사람들","인물",35,1.5],["36번 컷","필름",45,1.33],["빛 샌 필름","필름",12,.75],["여름 골목","필름",60,1.5],["흑백 계단","필름",220,.8]];
-var photos=seed.map(function(s){return{t:s[0],s:s[1],h:s[2],r:s[3]}});
-var cur="전체",lbIdx=-1,list=[];
-var $=function(i){return document.getElementById(i)};
-function ph(p){var d=document.createElement("div");d.className="ph";d.style.setProperty("--r",String(p.r));
-  d.style.background="linear-gradient(155deg,hsl("+p.h+" 35% 62%),hsl("+(p.h+40)+" 40% 32%))";d.setAttribute("role","img");d.setAttribute("aria-label",p.t);return d}
-function media(p){if(p.src){var i=document.createElement("img");i.src=p.src;i.alt=p.t;return i}return ph(p)}
-function tabs(){var t=$("tabs");t.innerHTML="";SERIES.forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;
-  b.setAttribute("aria-pressed",n===cur);b.onclick=function(){cur=n;render();tabs()};t.appendChild(b)})}
-function render(){list=photos.filter(function(p){return cur==="전체"||p.s===cur});var g=$("grid");g.innerHTML="";
-  $("count").textContent=list.length+"장";
-  if(!list.length){g.innerHTML='<p class="empty">이 시리즈에는 아직 사진이 없습니다. 위의 “사진 추가”로 올려 보세요.</p>';g.style.columnCount=1;return}
-  g.style.columnCount="";
-  list.forEach(function(p,i){var b=document.createElement("button");b.type="button";b.className="tile";b.setAttribute("aria-label",p.t+" 크게 보기");
-    b.appendChild(media(p));var n=document.createElement("span");n.className="no";n.textContent=String(i+1).padStart(2,"0");b.appendChild(n);
-    b.onclick=function(){open(i)};g.appendChild(b)})}
-function open(i){lbIdx=(i+list.length)%list.length;var p=list[lbIdx];var s=$("stage");s.innerHTML="";s.appendChild(media(p));
-  $("cap").innerHTML="";$("cap").appendChild(document.createTextNode(p.t));var sm=document.createElement("small");sm.textContent=p.s+" · "+(lbIdx+1)+" / "+list.length;$("cap").appendChild(sm);
-  $("lb").classList.add("on");$("lx").focus()}
-function close(){$("lb").classList.remove("on");lbIdx=-1}
-$("lx").onclick=close;$("lp").onclick=function(){open(lbIdx-1)};$("ln").onclick=function(){open(lbIdx+1)};
-$("lb").onclick=function(e){if(e.target===$("lb")||e.target===$("stage"))close()};
-document.addEventListener("keydown",function(e){if(lbIdx<0)return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")open(lbIdx-1);if(e.key==="ArrowRight")open(lbIdx+1)});
-$("size").oninput=function(){var v=7-Number(this.value);document.documentElement.style.setProperty("--cols",v);document.documentElement.style.setProperty("--gap",(v>4?8:14)+"px")};
-document.documentElement.style.setProperty("--cols",3);
-$("size").value=4;
-$("file").onchange=function(){var fs=Array.prototype.slice.call(this.files);var left=fs.length;
-  fs.forEach(function(f){var u=URL.createObjectURL(f);var im=new Image();im.onload=function(){
-    photos.unshift({t:f.name.replace(/\.[^.]+$/,""),s:cur==="전체"?"도시":cur,src:u,r:im.naturalWidth/im.naturalHeight});
-    if(--left===0)render()};im.onerror=function(){if(--left===0)render()};im.src=u});this.value=""};
-var tm="auto";$("theme").onclick=function(){var dark=matchMedia("(prefers-color-scheme: dark)").matches;
-  var now=document.documentElement.getAttribute("data-theme")||(dark?"dark":"light");
-  document.documentElement.setAttribute("data-theme",now==="dark"?"light":"dark")};
-tabs();render();
+const D = window.WORKS || {};
+const S = D.site || {};
+const CATS = D.categories || [];
+const TEXTS = D.texts || [];
+const $ = s => document.querySelector(s);
+const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const paras = t => (t || '').split(/\n\s*\n/).filter(Boolean).map(p => `<p>${esc(p).trim().replace(/\n/g,'<br>')}</p>`).join('');
+const enc = encodeURIComponent;
+const ig = (S.instagram || '').replace('@','');
+const contact =
+  (S.email ? `<a href="mailto:${esc(S.email)}">${esc(S.email)}</a>` : '') +
+  (ig ? `<a href="https://instagram.com/${esc(ig)}" target="_blank" rel="noopener">@${esc(ig)}</a>` : '');
+
+if (S.name) document.title = `${S.name} · 사진`;
+$('#brand').innerHTML = `${esc(S.name || '이름')}${S.name_en ? `<small>${esc(S.name_en)}</small>` : ''}`;
+$('#foot').innerHTML = contact;
+
+let current = null;   // 지금 보고 있는 작업 (크게 보기용)
+
+function nav(sec, id){
+  const sub = (items, base) => `<div class="sub">${items.map(i =>
+    `<a href="#${base}/${enc(i.id)}" class="${i.id === id ? 'on' : ''}">${esc(i.title)}</a>`).join('')}</div>`;
+  $('#nav').innerHTML =
+    `<a href="#works" class="${sec === 'works' ? 'on' : ''}">Works</a>${sec === 'works' ? sub(CATS, 'works') : ''}` +
+    `<a href="#texts" class="${sec === 'texts' ? 'on' : ''}">Texts</a>${sec === 'texts' ? sub(TEXTS, 'texts') : ''}` +
+    `<a href="#about" class="${sec === 'about' ? 'on' : ''}">About</a>`;
+}
+
+function render(){
+  const [sec, id] = location.hash.slice(1).split('/').map(decodeURIComponent);
+  const m = $('#main');
+  const isHome = !['works','texts','about'].includes(sec);
+  document.body.classList.toggle('home', isHome);
+  current = null;
+  window.scrollTo(0, 0);
+
+  /* 첫 화면 */
+  if (isHome){
+    m.innerHTML = `<div class="intro">
+      <header><b>${esc(S.name || '이름')}</b>${S.name_en ? `<small>${esc(S.name_en)}</small>` : ''}${S.tagline ? `<p>${esc(S.tagline)}</p>` : ''}</header>
+      <div class="gate">
+        <a href="#works">Works<small>작업 ${CATS.length}</small></a>
+        <a href="#texts">Texts<small>글 ${TEXTS.length}</small></a>
+        <a href="#about">About<small>소개</small></a>
+      </div>
+      <footer>${contact}</footer></div>`;
+    return;
+  }
+
+  nav(sec, id);
+
+  /* Works */
+  if (sec === 'works'){
+    const cat = CATS.find(c => c.id === id);
+    if (cat){
+      current = cat;
+      m.innerHTML = `<h1>${esc(cat.title)}</h1><div class="text">${paras(cat.text)}</div>
+        <div class="rows">${cat.images.map((im, i) =>
+          `<button style="--r:${((im.w || 3) / (im.h || 2)).toFixed(3)}" data-i="${i}" aria-label="${esc(im.caption || cat.title + ' ' + (i + 1))}">
+            <img src="${esc(im.src)}" ${im.w ? `width="${im.w}" height="${im.h}"` : ''} loading="lazy" alt="${esc(im.caption || cat.title)}"></button>`).join('')}<i></i></div>`;
+    } else {
+      m.innerHTML = `<h1>Works<small>작업</small></h1>` + (CATS.length
+        ? `<div class="tiles">${CATS.map(c =>
+            `<a class="tile" href="#works/${enc(c.id)}"><img src="${esc(c.images[0].src)}" loading="lazy" alt=""><span>${esc(c.title)}<em>${c.images.length}</em></span></a>`).join('')}</div>`
+        : `<p class="empty">아직 등록된 작업이 없습니다.</p>`);
+    }
+    return;
+  }
+
+  /* Texts: 사진 없이 글만 */
+  if (sec === 'texts'){
+    const t = TEXTS.find(x => x.id === id);
+    if (t){
+      m.innerHTML = `<article class="essay"><h1>${esc(t.title)}</h1><div class="body">${paras(t.body)}</div><a class="back" href="#texts">← 글 목록</a></article>`;
+    } else {
+      m.innerHTML = `<h1>Texts<small>글</small></h1>` + (TEXTS.length
+        ? `<ul class="list">${TEXTS.map(x =>
+            `<li><a href="#texts/${enc(x.id)}"><b>${esc(x.title)}</b><span>${esc(x.body.replace(/\s+/g, ' ').slice(0, 90))}</span></a></li>`).join('')}</ul>`
+        : `<p class="empty">아직 등록된 글이 없습니다.</p>`);
+    }
+    return;
+  }
+
+  /* About */
+  m.innerHTML = `<h1>About<small>소개</small></h1><div class="text">${paras(D.about)}</div>`;
+}
+addEventListener('hashchange', render);
+render();
+
+/* 크게 보기 */
+const lb = $('#lb'); let idx = 0;
+function show(i){
+  const list = current.images; idx = (i + list.length) % list.length;
+  lb.querySelector('img').src = list[idx].src;
+  lb.querySelector('img').alt = list[idx].caption || current.title;
+  lb.querySelector('p').textContent = [list[idx].caption, `${idx + 1} / ${list.length}`].filter(Boolean).join('   ');
+  [list[(idx + 1) % list.length], list[(idx - 1 + list.length) % list.length]].forEach(n => { new Image().src = n.src; });
+}
+const open = i => { if (!current) return; show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus(); };
+const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+$('#main').addEventListener('click', e => { const b = e.target.closest('.rows button'); if (b) open(+b.dataset.i); });
+lb.querySelector('.x').onclick = close;
+lb.querySelector('.p').onclick = () => show(idx - 1);
+lb.querySelector('.n').onclick = () => show(idx + 1);
+lb.addEventListener('click', e => { if (e.target === lb) close(); });
+addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') close();
+  if (e.key === 'ArrowLeft') show(idx - 1);
+  if (e.key === 'ArrowRight') show(idx + 1);
+});
+let x0 = null;
+lb.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+lb.addEventListener('touchend', e => { if (x0 === null) return; const d = e.changedTouches[0].clientX - x0; if (Math.abs(d) > 50) show(idx + (d < 0 ? 1 : -1)); x0 = null; });
 </script>
 </body>
 </html>
